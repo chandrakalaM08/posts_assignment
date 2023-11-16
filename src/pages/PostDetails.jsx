@@ -78,6 +78,20 @@ const PostDetails = () => {
                     <div className={poststyles.postcard} style={{ margin: "auto", width: "90%", height: "fit-content" }}>
                         <h2>{post.title}</h2>
                         <p>{post.body}</p>
+                        <hr />
+                        <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                            <button style={{
+                                marginRight: "50px", borderStyle: "none",
+                                background: "skyblue", padding: "10px", borderRadius: "5px"
+                                , fontWeight: "600"
+                            }}>✏️Edit</button>
+                            <button
+                                style={{
+                                    borderStyle: "none",
+                                    background: "rgb(255,160,122)", padding: "10px", borderRadius: "5px"
+                                    , fontWeight: "600"
+                                }}>🗑️Delete</button>
+                        </div>
                     </div>
                     <div>
                         <h4 style={{ textAlign: "left", marginLeft: "100px" }}>Comments:</h4>

@@ -8,6 +8,7 @@ const PostList = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(response => {
@@ -24,6 +25,18 @@ const PostList = () => {
             });
     }, []);
 
+    const handleLike = (postId) => {
+        const updatedPosts = posts.map(post =>
+            post.id === postId ? { ...post, liked: !post.liked } : post
+        );
+
+        setPosts(updatedPosts)
+
+    };
+
+    const likedPosts = posts.filter(post => post.liked);
+
+
     if (loading) {
         return <Loader />;
     }
@@ -32,19 +45,72 @@ const PostList = () => {
         return <div>Error: {error}</div>;
     }
 
+
+
     return (
         <div >
-            <h1>Posts</h1>
+            <h1 onClick={() => {
+                window.location.reload()
+            }}>Posts</h1>
+            <div style={{
+                display: "flex",
+                width: "600px",
+                justifyContent: "space-around",
+                margin: "auto"
+            }}>
+                <button style={{
+                    borderStyle: "none",
+                    background: "pink",
+                    padding: "10px",
+                    borderRadius: "5px"
+                    , color: "white",
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    marginBottom: "15px"
+                }}
+
+                    onClick={() => {
+                        setPosts(likedPosts)
+
+                    }}
+
+                >Filter Liked Posts</button>
+
+                <button
+                    style={{
+                        borderStyle: "none",
+                        background: "skyblue",
+                        padding: "10px",
+                        borderRadius: "5px"
+                        , color: "white",
+                        fontWeight: "600",
+                        fontSize: "16px",
+                        marginBottom: "15px"
+                    }}>Add New</button>
+            </div>
             <div className={styles.postlist}>
 
                 {posts.map(post => (
+                    <div key={post.id} className={styles.postcard}>
                     <Link to={`/post/${post.id}`} className={styles.linkClass}>
-                        <div key={post.id} className={styles.postcard}>
-                            <h2>{post.title}</h2>
+                            <>
+                                <h2>{post.title}</h2>
                             <p>{post.body}</p>
-                        </div>
-                    </Link>
+                            </>
+
+                        </Link>
+                        <button onClick={() => handleLike(post.id)}
+                            style={{
+                                background: "skyblue", borderStyle: "none", padding: "10px", borderRadius: "5px",
+                                fontSize: "14px"
+                            }}>
+                            {post.liked ? ' 👎🏻Unlike' : ' 👍🏻Like'}
+                        </button>
+                    </div>
+
+
                 ))}
+
             </div>
         </div>
 
