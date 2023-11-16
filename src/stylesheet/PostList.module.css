@@ -1,0 +1,50 @@
+.postlist {
+    width: 95%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: auto;
+    margin-top: 0;
+}
+
+.postcard {
+    background: #DBE6F6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #edc0b9, #DBE6F6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #edc0b9, #DBE6F6);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 300px;
+    border-radius: 20px;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+
+}
+
+.postcard h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.postcard p {
+    color: #333;
+    line-height: 1.4;
+}
+
+/*Hover*/
+.postcard:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.linkClass {
+    text-decoration: none;
+    color: inherit;
+}
