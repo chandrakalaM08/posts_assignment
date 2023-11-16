@@ -81,16 +81,12 @@ const PostDetails = () => {
                         <hr />
                         <div style={{ textAlign: "left", marginLeft: "20px" }}>
                             <button style={{
+                                width: "100px",
                                 marginRight: "50px", borderStyle: "none",
                                 background: "skyblue", padding: "10px", borderRadius: "5px"
                                 , fontWeight: "600"
                             }}>✏️Edit</button>
-                            <button
-                                style={{
-                                    borderStyle: "none",
-                                    background: "rgb(255,160,122)", padding: "10px", borderRadius: "5px"
-                                    , fontWeight: "600"
-                                }}>🗑️Delete</button>
+
                         </div>
                     </div>
                     <div>

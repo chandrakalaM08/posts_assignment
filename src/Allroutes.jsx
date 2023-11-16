@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import PostList from './pages/PostList'
 import PostDetails from './pages/PostDetails'
 
+
 const Allroutes = () => {
     return (
         <Routes>
