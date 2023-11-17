@@ -39,6 +39,21 @@ const PostList = () => {
     const likedPosts = posts.filter(post => post.liked);
 
 
+    const handleDelete = async (postId) => {
+        try {
+            await axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((res) => {
+                alert("Post Successfully Deleted!")
+                setPosts(posts.filter(post => post.id !== postId));
+
+            });
+            console.log('Deleted post:', postId);
+
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+    };
+
+
     if (loading) {
         return <Loader />;
     }
@@ -116,6 +131,7 @@ const PostList = () => {
                         </button>
 
                         <button
+                            onClick={() => { handleDelete(post.id) }}
                             style={{
                                 width: "90px",
                                 borderStyle: "none", fontSize: "14px",
