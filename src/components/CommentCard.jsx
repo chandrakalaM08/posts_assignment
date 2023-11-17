@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CommentCard = ({ comment }) => {
-    console.log("comments inside card", comment)
+
     return (
         <div style={{ display: "flex", width: "90%", justifyContent: "flex-start", marginLeft: "100px" }}>
             <div style={{ display: "flex" }}>

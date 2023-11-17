@@ -5,12 +5,16 @@ import Loader from '../components/Loader';
 import CommentCard from '../components/CommentCard';
 
 import poststyles from "../stylesheet/PostList.module.css"
+import EditPost from '../components/EditPost';
 
 const PostDetails = () => {
     const [post, setPost] = useState({});
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [showEditPost, setShowEditPost] = useState(false);
 
     const { id } = useParams();
 
@@ -47,7 +51,25 @@ const PostDetails = () => {
             });
     }
 
-    console.log("comments are", comments)
+
+
+    const handleUpdatePost = (postId) => {
+        setLoading(true);
+        axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, { title, body })
+            .then(response => {
+                setLoading(false);
+                console.log('Post updated:', response.data);
+                setPost(response.data)
+
+            })
+            .catch(error => {
+                setLoading(false);
+                console.error('Error updating post:', error);
+                setError('Error updating post. Please try again.');
+            });
+    };
+
+
 
     useEffect(() => {
         getPost()
@@ -75,12 +97,22 @@ const PostDetails = () => {
 
             {post ? (
                 <>
+                    {showEditPost && <EditPost post={post} setPost={setPost}
+                        setBody={setBody}
+                        title={title} body={body}
+                        setTitle={setTitle} handleUpdatePost={handleUpdatePost} />}
+
                     <div className={poststyles.postcard} style={{ margin: "auto", width: "90%", height: "fit-content" }}>
                         <h2>{post.title}</h2>
                         <p>{post.body}</p>
                         <hr />
                         <div style={{ textAlign: "left", marginLeft: "20px" }}>
-                            <button style={{
+                            <button
+                                onClick={() => {
+                                    setShowEditPost(true)
+                                    console.log("start editing")
+                                }}
+                                style={{
                                 width: "100px",
                                 marginRight: "50px", borderStyle: "none",
                                 background: "skyblue", padding: "10px", borderRadius: "5px"
